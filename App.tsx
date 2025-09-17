@@ -21,6 +21,7 @@ function App() {
       <ThemeProvider>
         <NavigationContainer>
           <Stack.Navigator>
+            <Stack.Screen name="Feature1" component={Feature1} />
           </Stack.Navigator>
         </NavigationContainer>
       </ThemeProvider>

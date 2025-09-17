@@ -1,4 +1,5 @@
 export default {
-  BLACK: '#000000',
-  WHITE: '#FFFFFF',
+  PRIMARY_BLACK: '#000000',
+  PRIMARY_WHITE: '#FFFFFF',
+  PRIMARY_GREEN: '#04CDBD',
 };
