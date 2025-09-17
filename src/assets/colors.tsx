@@ -1,0 +1,5 @@
+export default {
+  PRIMARY_BLACK: '#000000',
+  PRIMARY_WHITE: '#FFFFFF',
+  PRIMARY_GREEN: '#04CDBD',
+};
