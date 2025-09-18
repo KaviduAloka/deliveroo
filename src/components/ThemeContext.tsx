@@ -10,8 +10,9 @@ export const ThemeContext = createContext({
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   // Detect system preference initially
   const colorScheme = Appearance.getColorScheme();
+
   const [theme, setTheme] = useState(
-    colorScheme === 'dark' ? darkTheme : lightTheme,
+    colorScheme === 'light' ? lightTheme : darkTheme,
   );
 
   const toggleTheme = () => {
