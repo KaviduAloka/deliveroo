@@ -9,6 +9,7 @@ import { images } from '../../../../assets';
 import styles from './styles';
 import { goBack } from '../../../../navigation/NavigationService';
 import { Text } from '../../../../components/typography';
+import RestaurantInfoHeaderRow from '../views/RestaurantInfoHeaderRow';
 
 interface Props {
   route: { params: { restaurant_id: number } };
@@ -30,12 +31,12 @@ const RestaurantInformationContainer: React.FC<Props> = ({
     <>
       <View style={styles.headerImageWrapper}>
         <Image
-          source={images.RESTAURANT_HEADER}
+          source={images.restaurant_header}
           resizeMode="cover"
           style={styles.headerImage}
         />
         <TouchableOpacity style={styles.backButton} onPress={goBack}>
-          <Image source={images.BACK_ARROW_24} style={styles.backButtonIcon} />
+          <Image source={images.back_arrow_24} style={styles.backButtonIcon} />
         </TouchableOpacity>
       </View>
       <View style={styles.restaurantDetailsWrapper}>
@@ -47,6 +48,29 @@ const RestaurantInformationContainer: React.FC<Props> = ({
           0.60 miles away · Closes at 21:00 · $8.00 minimum · $2 delivery
         </Text>
       </View>
+      <TouchableOpacity style={styles.headerRowItemWrapper} onPress={() => {}}>
+        <Image source={images.info} style={styles.infoIcon} />
+        <View style={styles.rowItemContentWrapper}>
+          <Text style={styles.rowItemTitle}>Info</Text>
+          <Text style={styles.rowItemSubTitle}>
+            Map, allergens and hygiene rating
+          </Text>
+        </View>
+        <Image source={images.right_arrow} style={styles.rightArrowIcon} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.headerRowItemWrapper} onPress={() => {}}>
+        <Image source={images.star} style={styles.infoIcon} />
+        <View style={styles.rowItemContentWrapper}>
+          <Text style={styles.rowItemTitle}>4.7 Excellent</Text>
+          <Text style={styles.rowItemSubTitle}>Sell all 500 reviews</Text>
+        </View>
+        <Image source={images.right_arrow} style={styles.rightArrowIcon} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.headerRowItemWrapper}>
+        <Image source={images.delivery} style={styles.deliveryIcon} />
+        <Text style={styles.deliveryText}>Deliver in 15 - 30 min</Text>
+        <Text style={styles.deliveryChangeText}>Change</Text>
+      </TouchableOpacity>
     </>
   );
 
@@ -60,7 +84,6 @@ const RestaurantInformationContainer: React.FC<Props> = ({
         renderItem={() => <></>}
         keyExtractor={keyExtractor}
         contentContainerStyle={{ paddingHorizontal: 20 }}
-        ListHeaderComponentStyle={{ marginHorizontal: -20 }}
         ListHeaderComponent={renderListHeader}
       />
     </SafeAreaView>

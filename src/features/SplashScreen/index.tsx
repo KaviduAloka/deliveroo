@@ -23,7 +23,7 @@ const SplashScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={images.DELIVEROO_LOGO_TRANSPARENT} style={styles.logo} />
+      <Image source={images.deliveroo_logo_transparent} style={styles.logo} />
     </View>
   );
 };
