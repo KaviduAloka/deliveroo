@@ -14,8 +14,11 @@ export default {
   right_arrow: require('./images/right_arrow.png'),
   plus: require('./images/plus.png'),
   close: require('./images/close.png'),
+  menu: require('./images/menu.png'),
   increment: require('./images/increment.png'),
   decrement: require('./images/decrement.png'),
+  switch_on: require('./images/switch_on.png'),
+  switch_off: require('./images/switch_off.png'),
 
   restaurant_header: require('./images/restaurant_header.jpg'),
 };

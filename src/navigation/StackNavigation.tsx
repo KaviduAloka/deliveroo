@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { navigationConstants } from '../constants';
 import SplashScreen from '../features/SplashScreen';
-import Home from '../features/Home';
+import Home from '../features/Home/containers/HomeContainer';
 import { navigationRef } from './NavigationService';
 import RestaurantInformationContainer from '../features/Restaurant/containers/RestaurantInformationContainer';
 import RestaurantFoodInformationContainer from '../features/Restaurant/containers/RestaurantFoodInformationContainer';
