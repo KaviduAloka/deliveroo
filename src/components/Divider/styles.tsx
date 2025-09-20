@@ -1,10 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  fullFlex: {
+  wrapper: {
     flex: 1,
-  },
-  row: {
-    flexDirection: 'row',
+    borderBottomWidth: 2,
   },
 });

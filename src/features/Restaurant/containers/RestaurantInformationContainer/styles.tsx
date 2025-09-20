@@ -9,12 +9,11 @@ export default StyleSheet.create({
   headerImage: {
     width: screenWidth,
     height: 240,
-    marginLeft: -20,
   },
   backButton: {
     position: 'absolute',
     top: 10,
-    left: -10,
+    left: 10,
     backgroundColor: colors.PRIMARY_WHITE,
     padding: 10,
     borderRadius: '50%',
@@ -22,8 +21,9 @@ export default StyleSheet.create({
   backButtonIcon: {
     tintColor: colors.PRIMARY_GREEN,
   },
-  restaurantDetailsWrapper: {
+  restaurantInfoWrapper: {
     marginVertical: 10,
+    marginHorizontal: 20,
   },
   restaurantName: {
     fontSize: 28,
@@ -37,6 +37,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
+    marginHorizontal: 20,
+  },
+  stickyList: {
+    marginHorizontal: 20,
   },
   infoIcon: {
     width: 20,
@@ -50,11 +54,9 @@ export default StyleSheet.create({
   rowItemTitle: {
     fontSize: 16,
     marginBottom: 5,
-    color: colors.TEXT_2E3333,
   },
   rowItemSubTitle: {
     fontSize: 14,
-    color: colors.TEXT_585C5C,
   },
   rightArrowIcon: {
     tintColor: colors.PRIMARY_GREEN,
@@ -70,7 +72,55 @@ export default StyleSheet.create({
   deliveryText: {
     flex: 1,
     fontSize: 16,
-    color: colors.TEXT_2E3333,
   },
   deliveryChangeText: { fontSize: 16, color: colors.PRIMARY_GREEN },
+  stickyHeaderWrapper: {
+    paddingVertical: 20,
+    borderTopWidth: 1,
+    borderTopColor: colors.BORDER_LIGHT_GRAY,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.BORDER_LIGHT_GRAY,
+  },
+  stickyHeaderItem: {
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderRadius: 20,
+  },
+  stickyHeaderItemText: (active: boolean) => ({
+    color: active ? colors.PRIMARY_WHITE : colors.PRIMARY_GREEN,
+    fontWeight: active ? 'bold' : 'normal',
+  }),
+  listCategoryText: {
+    fontWeight: 'bold',
+    marginHorizontal: 20,
+    fontSize: 20,
+    marginVertical: 20,
+  },
+  foodsList: {
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+  },
+  foodListItemWrapper: {
+    flexDirection: 'row',
+    paddingBottom: 15,
+  },
+  foodName: {
+    fontWeight: 'bold',
+    marginBottom: 5,
+    fontSize: 16,
+  },
+  foodSeparator: {
+    marginHorizontal: -20,
+    marginBottom: 10,
+  },
+  foodPrice: {
+    marginTop: 5,
+  },
+  foodImage: {
+    width: 80,
+    height: 80,
+  },
+  footerView: {
+    height: 400,
+  },
 });

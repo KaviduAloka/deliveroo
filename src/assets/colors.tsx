@@ -3,7 +3,12 @@ export default {
   PRIMARY_WHITE: '#ffffff',
   PRIMARY_GREEN: '#04cdbd',
   BORDER_GRAY: '#999999',
+  BORDER_LIGHT_GRAY: '#00000014',
+
+  BACKGROUND_LIGHT: '#faf7f7',
+  BACKGROUND_DARK: '#333232',
 
   TEXT_2E3333: '#2e3333',
   TEXT_585C5C: '#585c5c',
+  TEXT_CCCCCC: '#cccccc',
 };
