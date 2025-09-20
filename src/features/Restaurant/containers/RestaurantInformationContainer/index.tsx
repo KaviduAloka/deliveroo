@@ -189,22 +189,53 @@ const RestaurantInformationContainer: React.FC<Props> = ({
       description: string;
       price: number;
       image: string;
+      available: boolean;
     };
   }) => {
     return (
-      <View style={styles.foodListItemWrapper}>
+      <TouchableOpacity
+        disabled={!item.available}
+        activeOpacity={0.8}
+        style={[
+          styles.foodListItemWrapper,
+          { opacity: item.available ? 1 : 0.5 },
+        ]}
+      >
         <View style={commonStyles.fullFlex}>
           <Text style={styles.foodName}>{item.name}</Text>
           <Text style={styles.rowItemSubTitle}>{item.description}</Text>
-          <Text style={styles.foodPrice}>${item.price}</Text>
+          <Text style={styles.foodPrice}>${item.price} G</Text>
         </View>
-        <Image
-          source={{ uri: item.image }}
-          style={styles.foodImage}
-          resizeMode="center"
-          resizeMethod="scale"
-        />
-      </View>
+        {item.image ? (
+          <View>
+            <Image
+              source={{
+                uri: 'https://media.istockphoto.com/id/1472680285/photo/healthy-meal-with-grilled-chicken-rice-salad-and-vegetables-served-by-woman.jpg?s=612x612&w=0&k=20&c=E4Y94oLIj8lXYk0OovBhsah3s_sC--WF95xPDvbJPlU=',
+              }}
+              style={styles.foodImage}
+              resizeMode="cover"
+              resizeMethod="scale"
+            />
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={styles.addToCartButton}
+              disabled={!item.available}
+            >
+              <Image source={images.plus} style={styles.addToCardIcon} />
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={{ justifyContent: 'center' }}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={styles.addToCartDisabledButton}
+              disabled={!item.available}
+            >
+              <Image source={images.plus} style={styles.addToCardIcon} />
+            </TouchableOpacity>
+          </View>
+        )}
+      </TouchableOpacity>
     );
   };
 

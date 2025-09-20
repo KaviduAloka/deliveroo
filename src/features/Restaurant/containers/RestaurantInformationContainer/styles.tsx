@@ -119,8 +119,32 @@ export default StyleSheet.create({
   foodImage: {
     width: 80,
     height: 80,
+    borderRadius: 5,
+    marginLeft: 10,
   },
   footerView: {
     height: 400,
+  },
+  addToCartButton: {
+    backgroundColor: colors.PRIMARY_WHITE,
+    padding: 10,
+    position: 'absolute',
+    right: -10,
+    bottom: -10,
+    borderRadius: '50%',
+    borderWidth: 1,
+    borderColor: colors.BORDER_LIGHT_GRAY,
+  },
+  addToCartDisabledButton: {
+    backgroundColor: colors.PRIMARY_WHITE,
+    padding: 10,
+    borderRadius: '50%',
+    borderWidth: 1,
+    borderColor: colors.BORDER_LIGHT_GRAY,
+  },
+  addToCardIcon: {
+    tintColor: colors.PRIMARY_GREEN,
+    width: 20,
+    height: 20,
   },
 });

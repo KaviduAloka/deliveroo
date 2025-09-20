@@ -44,6 +44,7 @@ export function* getRestaurantInformationSaga({
               price: 12.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/shakshuka.jpg',
+              available: true,
             },
             {
               id: 2,
@@ -53,6 +54,8 @@ export function* getRestaurantInformationSaga({
               price: 9.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/falafel_wrap.jpg',
+
+              available: true,
             },
           ],
         },
@@ -67,6 +70,8 @@ export function* getRestaurantInformationSaga({
               price: 14.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/full_english.jpg',
+
+              available: true,
             },
             {
               id: 4,
@@ -76,6 +81,8 @@ export function* getRestaurantInformationSaga({
               price: 8.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/pancakes.jpg',
+
+              available: false,
             },
           ],
         },
@@ -90,6 +97,8 @@ export function* getRestaurantInformationSaga({
               price: 10.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/avocado_toast.jpg',
+
+              available: true,
             },
             {
               id: 6,
@@ -99,6 +108,8 @@ export function* getRestaurantInformationSaga({
               price: 11.99,
               image:
                 'https://www.deliveroo.co.uk  /static/images/menus/restaurant/veg_omelette.jpg',
+
+              available: true,
             },
           ],
         },
@@ -113,6 +124,8 @@ export function* getRestaurantInformationSaga({
               price: 9.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/blueberry_pancakes.jpg',
+
+              available: true,
             },
             {
               id: 8,
@@ -122,6 +135,8 @@ export function* getRestaurantInformationSaga({
               price: 10.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/choc_chip_pancakes.jpg',
+
+              available: true,
             },
           ],
         },
@@ -136,6 +151,7 @@ export function* getRestaurantInformationSaga({
               price: 11.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/club_sandwich.jpg',
+              available: true,
             },
             {
               id: 10,
@@ -145,6 +161,7 @@ export function* getRestaurantInformationSaga({
               price: 10.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/blt_sandwich.jpg',
+              available: true,
             },
           ],
         },
@@ -159,6 +176,8 @@ export function* getRestaurantInformationSaga({
               price: 7.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/ham_cheese_croissant.jpg',
+
+              available: true,
             },
             {
               id: 12,
@@ -168,6 +187,8 @@ export function* getRestaurantInformationSaga({
               price: 6.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/almond_croissant.jpg',
+
+              available: true,
             },
           ],
         },
@@ -182,6 +203,8 @@ export function* getRestaurantInformationSaga({
               price: 9.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/brioche_french_toast.jpg',
+
+              available: true,
             },
             {
               id: 14,
@@ -191,6 +214,8 @@ export function* getRestaurantInformationSaga({
               price: 10.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/berry_french_toast.jpg',
+
+              available: true,
             },
           ],
         },
@@ -205,6 +230,8 @@ export function* getRestaurantInformationSaga({
               price: 3.49,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/croissant.jpg',
+
+              available: true,
             },
             {
               id: 16,
@@ -214,6 +241,8 @@ export function* getRestaurantInformationSaga({
               price: 3.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/pain_au_chocolat.jpg',
+
+              available: true,
             },
           ],
         },
@@ -228,6 +257,8 @@ export function* getRestaurantInformationSaga({
               price: 2.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/cappuccino.jpg',
+
+              available: true,
             },
             {
               id: 18,
@@ -237,6 +268,7 @@ export function* getRestaurantInformationSaga({
               price: 2.49,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/earl_grey.jpg',
+              available: true,
             },
           ],
         },
@@ -251,6 +283,7 @@ export function* getRestaurantInformationSaga({
               price: 3.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/orange_juice.jpg',
+              available: true,
             },
             {
               id: 20,
@@ -260,6 +293,7 @@ export function* getRestaurantInformationSaga({
               price: 4.99,
               image:
                 'https://www.deliveroo.co.uk/static/images/menus/restaurant/strawberry_banana_smoothie.jpg',
+              available: true,
             },
           ],
         },
