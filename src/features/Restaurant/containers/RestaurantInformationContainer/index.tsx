@@ -5,11 +5,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { useDispatch } from 'react-redux';
-import { getRestaurantInformation } from '../../store/actions';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import MenuNavHeader from '../views/MenuNavHeader';
-import { ThemeContext } from '../../../../components/ThemeContext';
 import {
   FlatList,
   Image,
@@ -17,6 +12,12 @@ import {
   View,
   ViewToken,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { useDebouncedCallback } from 'use-debounce';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { getRestaurantInformation } from '../../store/actions';
+import MenuNavHeader from '../views/MenuNavHeader';
+import { ThemeContext } from '../../../../components/ThemeContext';
 import { colors, images } from '../../../../assets';
 import styles from './styles';
 import { goBack } from '../../../../navigation/NavigationService';
@@ -27,7 +28,7 @@ import {
 } from '../../interfaces';
 import commonStyles from '../../../../themes/commonStyles';
 import Divider from '../../../../components/Divider';
-import { useDebouncedCallback } from 'use-debounce';
+import { navigateTpRestaurantFoodInformation } from '../../../../navigation/navigationHelpers';
 
 interface Props {
   route: { params: { restaurant_id: number } };
@@ -198,18 +199,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
     );
   };
 
-  const renderFoodItem = ({
-    item,
-  }: {
-    item: {
-      id: number;
-      name: string;
-      description: string;
-      price: number;
-      image: string;
-      available: boolean;
-    };
-  }) => {
+  const renderFoodItem = ({ item }: { item: RestaurantFoodInterface }) => {
     return (
       <TouchableOpacity
         disabled={!item.available}
@@ -218,6 +208,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
           styles.foodListItemWrapper,
           { opacity: item.available ? 1 : 0.5 },
         ]}
+        onPress={() => navigateTpRestaurantFoodInformation({ food: item })}
       >
         <View style={commonStyles.fullFlex}>
           <Text style={styles.foodName}>{item.name}</Text>
@@ -263,11 +254,12 @@ const RestaurantInformationContainer: React.FC<Props> = ({
     item: RestaurantFoodInterface;
   }) => {
     return (
-      <View
+      <TouchableOpacity
         style={[
           styles.verticalCard,
           { backgroundColor: theme.backgroundColor },
         ]}
+        onPress={() => navigateTpRestaurantFoodInformation({ food: item })}
       >
         <View>
           <Image
@@ -292,7 +284,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
           </Text>
           <Text>${item.price}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 

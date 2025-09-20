@@ -6,6 +6,7 @@ import SplashScreen from '../features/SplashScreen';
 import Home from '../features/Home';
 import { navigationRef } from './NavigationService';
 import RestaurantInformationContainer from '../features/Restaurant/containers/RestaurantInformationContainer';
+import RestaurantFoodInformationContainer from '../features/Restaurant/containers/RestaurantFoodInformationContainer';
 
 const StackNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator();
@@ -29,6 +30,15 @@ const StackNavigation: React.FC = () => {
           name={navigationConstants.RESTAURANT_INFORMATION}
           component={RestaurantInformationContainer}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={navigationConstants.FOOD_INFORMATION}
+          component={RestaurantFoodInformationContainer}
+          options={{
+            headerShown: false,
+            presentation: 'containedModal',
+            animation: 'fade_from_bottom',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
