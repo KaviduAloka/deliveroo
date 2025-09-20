@@ -13,6 +13,9 @@ export default {
   delivery: require('./images/delivery.png'),
   right_arrow: require('./images/right_arrow.png'),
   plus: require('./images/plus.png'),
+  close: require('./images/close.png'),
+  increment: require('./images/increment.png'),
+  decrement: require('./images/decrement.png'),
 
   restaurant_header: require('./images/restaurant_header.jpg'),
 };

@@ -7,6 +7,7 @@ export default {
 
   BACKGROUND_LIGHT: '#faf7f7',
   BACKGROUND_DARK: '#333232',
+  DARK_OPACITY: "#000000aa",
 
   TEXT_2E3333: '#2e3333',
   TEXT_585C5C: '#585c5c',
