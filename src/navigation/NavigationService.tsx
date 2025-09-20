@@ -24,4 +24,8 @@ const replace = (name: string, params?: object): void => {
   );
 };
 
-export { navigate, replace, navigationRef };
+const goBack = (): void => {
+  navigationRef.current?.goBack();
+};
+
+export { navigate, replace, goBack, navigationRef };

@@ -2,12 +2,16 @@ import colors from './colors';
 
 export const lightTheme = {
   mode: 'light',
-  background: colors.PRIMARY_WHITE,
-  text: colors.PRIMARY_BLACK,
+  backgroundColor: colors.PRIMARY_WHITE,
+  backgroundLightColor: colors.BACKGROUND_LIGHT,
+  textColor: colors.TEXT_2E3333,
+  textLightColor: colors.TEXT_585C5C,
 };
 
 export const darkTheme = {
   mode: 'dark',
-  background: colors.PRIMARY_BLACK,
-  text: colors.PRIMARY_WHITE,
+  backgroundColor: colors.PRIMARY_BLACK,
+  backgroundLightColor: colors.BACKGROUND_DARK,
+  textColor: colors.PRIMARY_WHITE,
+  textLightColor: colors.PRIMARY_GREEN,
 };

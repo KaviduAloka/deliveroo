@@ -5,6 +5,7 @@ import { navigationConstants } from '../constants';
 import SplashScreen from '../features/SplashScreen';
 import Home from '../features/Home';
 import { navigationRef } from './NavigationService';
+import RestaurantInformationContainer from '../features/Restaurant/containers/RestaurantInformationContainer';
 
 const StackNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator();
@@ -22,6 +23,11 @@ const StackNavigation: React.FC = () => {
         <Stack.Screen
           name={navigationConstants.HOME}
           component={Home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={navigationConstants.RESTAURANT_INFORMATION}
+          component={RestaurantInformationContainer}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
