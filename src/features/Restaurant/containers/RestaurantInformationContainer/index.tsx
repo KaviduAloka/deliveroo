@@ -21,7 +21,10 @@ import { colors, images } from '../../../../assets';
 import styles from './styles';
 import { goBack } from '../../../../navigation/NavigationService';
 import { Text } from '../../../../components/typography';
-import { RestaurantInformationResponseInterface } from '../../interfaces';
+import {
+  RestaurantFoodInterface,
+  RestaurantInformationResponseInterface,
+} from '../../interfaces';
 import commonStyles from '../../../../themes/commonStyles';
 import Divider from '../../../../components/Divider';
 import { useDebouncedCallback } from 'use-debounce';
@@ -88,7 +91,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
 
   const onStickyHeaderItemPress = (index: number) => {
     verticalListRef?.current.scrollToIndex({
-      index: index + 1,
+      index: index + 2,
       animated: true,
       viewOffset: 70,
     });
@@ -180,6 +183,21 @@ const RestaurantInformationContainer: React.FC<Props> = ({
     </View>
   );
 
+  const renderPopularWithPeopleView = () => {
+    return (
+      <>
+        <Text style={styles.listCategoryText}>Popular with other people</Text>
+        <FlatList
+          horizontal
+          keyExtractor={keyExtractor}
+          showsHorizontalScrollIndicator={false}
+          data={restaurantInformation?.foods.popularWithOthers}
+          renderItem={renderPopularWithOthersViewListItem}
+        />
+      </>
+    );
+  };
+
   const renderFoodItem = ({
     item,
   }: {
@@ -221,7 +239,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
               style={styles.addToCartButton}
               disabled={!item.available}
             >
-              <Image source={images.plus} style={styles.addToCardIcon} />
+              <Image source={images.plus} style={styles.addToCartIcon} />
             </TouchableOpacity>
           </View>
         ) : (
@@ -231,11 +249,50 @@ const RestaurantInformationContainer: React.FC<Props> = ({
               style={styles.addToCartDisabledButton}
               disabled={!item.available}
             >
-              <Image source={images.plus} style={styles.addToCardIcon} />
+              <Image source={images.plus} style={styles.addToCartIcon} />
             </TouchableOpacity>
           </View>
         )}
       </TouchableOpacity>
+    );
+  };
+
+  const renderPopularWithOthersViewListItem = ({
+    item,
+  }: {
+    item: RestaurantFoodInterface;
+  }) => {
+    return (
+      <View
+        style={[
+          styles.verticalCard,
+          { backgroundColor: theme.backgroundColor },
+        ]}
+      >
+        <View>
+          <Image
+            source={{
+              uri: 'https://media.istockphoto.com/id/1472680285/photo/healthy-meal-with-grilled-chicken-rice-salad-and-vegetables-served-by-woman.jpg?s=612x612&w=0&k=20&c=E4Y94oLIj8lXYk0OovBhsah3s_sC--WF95xPDvbJPlU=',
+            }}
+            style={styles.verticalCardImage}
+          />
+          <TouchableOpacity style={styles.addToCartButtonVerticalCard}>
+            <Image
+              source={images.plus}
+              style={styles.addToCartIconVerticalCard}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.verticalCardBody}>
+          <Text
+            style={styles.verticalCardTitle}
+            defaultTextProps={{ numberOfLines: 2 }}
+          >
+            {item.name}
+          </Text>
+          <Text>${item.price}</Text>
+        </View>
+      </View>
     );
   };
 
@@ -246,6 +303,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
   }: {
     item:
       | { sticky_view: boolean }
+      | { popular_items: boolean }
       | {
           category: string;
           foods: Array<{
@@ -258,7 +316,8 @@ const RestaurantInformationContainer: React.FC<Props> = ({
           }>;
         };
   }) => {
-    if (item.sticky_view === undefined) {
+    if ('category' in item && 'foods' in item) {
+      //  list item
       return (
         <>
           <Text style={styles.listCategoryText}>{item.category}</Text>
@@ -275,8 +334,12 @@ const RestaurantInformationContainer: React.FC<Props> = ({
           />
         </>
       );
-    } else {
+    } else if ('sticky_view' in item && item.sticky_view) {
+      // sticky header view
       return renderStickyHeader();
+    } else if ('popular_items' in item && item.popular_items) {
+      //  popular with other people view
+      return renderPopularWithPeopleView();
     }
   };
 
@@ -290,6 +353,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
           ref={verticalListRef}
           data={[
             { sticky_view: true },
+            { popular_items: true },
             ...restaurantInformation.foods.categorizedFoods,
           ]}
           renderItem={renderItem}

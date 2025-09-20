@@ -32,6 +32,29 @@ export function* getRestaurantInformationSaga({
         'Coffee and Tea',
         'Juices and Smoothies',
       ],
+      popularWithOthers: [
+        {
+          id: 1,
+          name: 'Shakshuka',
+          description:
+            'Two eggs poached in a spicy tomato sauce with peppers and onions. Served with warm pita bread.',
+          price: 12.99,
+          image:
+            'https://www.deliveroo.co.uk/static/images/menus/restaurant/shakshuka.jpg',
+          available: true,
+        },
+        {
+          id: 2,
+          name: 'Falafel Wrap',
+          description:
+            'Crispy falafel balls wrapped in a warm pita with lettuce, tomato, cucumber, and tahini sauce.',
+          price: 9.99,
+          image:
+            'https://www.deliveroo.co.uk/static/images/menus/restaurant/falafel_wrap.jpg',
+
+          available: true,
+        },
+      ],
       categorizedFoods: [
         {
           category: 'Middle Eastern',

@@ -142,7 +142,44 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.BORDER_LIGHT_GRAY,
   },
-  addToCardIcon: {
+  addToCartIcon: {
+    tintColor: colors.PRIMARY_GREEN,
+    width: 20,
+    height: 20,
+  },
+  verticalCard: {
+    borderWidth: 1,
+    borderColor: colors.BORDER_LIGHT_GRAY,
+    borderRadius: 10,
+    marginLeft: 20,
+    overflow: 'hidden',
+    height: 200,
+  },
+  verticalCardImage: {
+    width: 120,
+    height: 120,
+  },
+  verticalCardBody: {
+    flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    justifyContent: 'space-between',
+  },
+  verticalCardTitle: {
+    fontWeight: 'bold',
+    flexWrap: 'wrap',
+  },
+  addToCartButtonVerticalCard: {
+    backgroundColor: colors.PRIMARY_WHITE,
+    padding: 10,
+    position: 'absolute',
+    right: 5,
+    bottom: -10,
+    borderRadius: '50%',
+    borderWidth: 1,
+    borderColor: colors.BORDER_LIGHT_GRAY,
+  },
+  addToCartIconVerticalCard: {
     tintColor: colors.PRIMARY_GREEN,
     width: 20,
     height: 20,
