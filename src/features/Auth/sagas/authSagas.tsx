@@ -2,7 +2,9 @@ import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import { PayloadAction } from '@reduxjs/toolkit';
 import { call } from 'redux-saga/effects';
+import { EmailAuthRegisterParameterInterface } from '../intefaces';
 
 export function* googleSigninSaga() {
   yield call(async () => {
@@ -20,4 +22,10 @@ export function* googleSigninSaga() {
       }
     }
   });
+}
+
+export function* emailRegisterSaga({
+  payload: { data },
+}: PayloadAction<EmailAuthRegisterParameterInterface>) {
+  console.log(data);
 }

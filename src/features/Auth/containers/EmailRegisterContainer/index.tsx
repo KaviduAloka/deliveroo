@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Alert, Image, ScrollView } from 'react-native';
 import { TextInput } from '../../../../components/typography';
 import Button from '../../../../components/Button';
 import { images } from '../../../../assets';
 import styles from './styles';
 import { ThemeContext } from '../../../../components/ThemeContext';
+import { emailRegister } from '../../store/actions';
 
 const EmailRegisterContainer: React.FC = () => {
+  const dispatch = useDispatch();
+
   const { theme } = useContext(ThemeContext);
 
   const [email, setEmail] = useState<string>('');
@@ -33,7 +37,7 @@ const EmailRegisterContainer: React.FC = () => {
   };
 
   const registerUser = () => {
-    console.log('>>>>>');
+    dispatch(emailRegister({ data: { email: 'ASDSAD', password: 'sadasd' } }));
   };
 
   return (
