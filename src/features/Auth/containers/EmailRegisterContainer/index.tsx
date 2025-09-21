@@ -37,7 +37,7 @@ const EmailRegisterContainer: React.FC = () => {
   };
 
   const registerUser = () => {
-    dispatch(emailRegister({ data: { email: 'ASDSAD', password: 'sadasd' } }));
+    dispatch(emailRegister({ data: { email, password } }));
   };
 
   return (

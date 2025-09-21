@@ -6,11 +6,15 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { call, put } from 'redux-saga/effects';
 import { EmailAuthRegisterParameterInterface } from '../interfaces';
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   signInWithCredential,
+  signOut,
 } from '@react-native-firebase/auth';
 import { removeAuthData } from '../store/reducer';
+import { Alert } from 'react-native';
+import { hideLoading, showLoading } from '../../../store/appReducer/reducer';
 
 export function* googleSigninSaga() {
   yield call(async () => {
@@ -43,14 +47,43 @@ export function* googleSigninSaga() {
 export function* emailRegisterSaga({
   payload: { data },
 }: PayloadAction<EmailAuthRegisterParameterInterface>) {
-  console.log(data);
+  yield put(showLoading());
+
+  yield call(async () => {
+    try {
+      await createUserWithEmailAndPassword(
+        getAuth(),
+        data.email,
+        data.password,
+      );
+    } catch (error: any) {
+      if (error.code === 'auth/email-already-in-use') {
+        Alert.alert(
+          'Registration failed',
+          'That email address is already in use!',
+          [{ text: 'Ok' }],
+        );
+      }
+
+      if (error.code === 'auth/invalid-email') {
+        Alert.alert('Registration failed', 'That email address is invalid!', [
+          { text: 'Ok' },
+        ]);
+      }
+    }
+  });
+
+  yield put(hideLoading());
 }
 
 export function* signoutSaga() {
-  try {
-    yield call([getAuth, getAuth().signOut]);
-  } catch (error) {
-  } finally {
-    yield put(removeAuthData());
-  }
+  yield call(async () => {
+    try {
+      await signOut(getAuth());
+    } catch (error) {
+      __DEV__ && console.log('SIGNOUT ERROR: ', error);
+    }
+  });
+
+  yield put(removeAuthData());
 }
