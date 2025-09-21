@@ -23,3 +23,7 @@ export const navigateToLoginScreen = () => {
 export const navigateToRegisterWithEmail = () => {
   navigate(navigationConstants.EMAIL_REGISTER);
 };
+
+export const navigateToProfile = () => {
+  navigate(navigationConstants.USER_PROFILE);
+};

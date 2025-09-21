@@ -14,4 +14,11 @@ export default StyleSheet.create({
   goToRestaurantButton: {
     marginTop: 50,
   },
+  greetingText: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 50,
+    fontSize: 20,
+    color: colors.PRIMARY_GREEN,
+  },
 });

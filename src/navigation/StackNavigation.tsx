@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useContext } from 'react';
@@ -11,10 +12,13 @@ import LoginScreenContainer from '../features/Auth/containers/LoginScreenContain
 import { StatusBar } from 'react-native';
 import { ThemeContext } from '../components/ThemeContext';
 import EmailRegisterContainer from '../features/Auth/containers/EmailRegisterContainer';
+import { authDataSelector } from '../features/Auth/store/selectors';
+import ProfileContainer from '../features/Auth/containers/ProfileContainer';
 
 const StackNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator();
   const { theme } = useContext(ThemeContext);
+  const authData = useSelector(authDataSelector);
 
   return (
     <NavigationContainer ref={navigationRef}>
@@ -54,22 +58,39 @@ const StackNavigation: React.FC = () => {
             animation: 'fade_from_bottom',
           }}
         />
-        <Stack.Screen
-          name={navigationConstants.LOGIN_SCREEN}
-          component={LoginScreenContainer}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name={navigationConstants.EMAIL_REGISTER}
-          component={EmailRegisterContainer}
-          options={{
-            headerBackButtonDisplayMode: 'minimal',
-            title: 'Register with email',
-            headerTitleAlign: 'center',
-            headerTintColor: theme.textColor,
-            headerStyle: { backgroundColor: theme.backgroundLightColor },
-          }}
-        />
+        {authData ? (
+          <Stack.Group>
+            {/* auth stacks */}
+            <Stack.Screen
+              name={navigationConstants.USER_PROFILE}
+              component={ProfileContainer}
+              options={{
+                title: 'Profile',
+                headerBackButtonDisplayMode: 'minimal',
+              }}
+            />
+          </Stack.Group>
+        ) : (
+          <Stack.Group>
+            {/* non-auth stacks */}
+            <Stack.Screen
+              name={navigationConstants.LOGIN_SCREEN}
+              component={LoginScreenContainer}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name={navigationConstants.EMAIL_REGISTER}
+              component={EmailRegisterContainer}
+              options={{
+                headerBackButtonDisplayMode: 'minimal',
+                title: 'Register with email',
+                headerTitleAlign: 'center',
+                headerTintColor: theme.textColor,
+                headerStyle: { backgroundColor: theme.backgroundLightColor },
+              }}
+            />
+          </Stack.Group>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

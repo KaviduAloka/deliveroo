@@ -1,5 +1,5 @@
 import * as types from './types';
-import { EmailAuthRegisterParameterInterface } from '../intefaces';
+import { EmailAuthRegisterParameterInterface } from '../interfaces';
 
 export const googleSignin = () => ({
   type: types.GOOGLE_SIGNIN,
@@ -11,3 +11,5 @@ export const emailRegister = (
   type: types.EMAIL_REGISTER,
   payload,
 });
+
+export const signout = () => ({ type: types.SIGN_OUT });

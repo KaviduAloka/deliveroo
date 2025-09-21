@@ -3,14 +3,30 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { call } from 'redux-saga/effects';
-import { EmailAuthRegisterParameterInterface } from '../intefaces';
+import { call, put } from 'redux-saga/effects';
+import { EmailAuthRegisterParameterInterface } from '../interfaces';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithCredential,
+} from '@react-native-firebase/auth';
+import { removeAuthData } from '../store/reducer';
 
 export function* googleSigninSaga() {
   yield call(async () => {
     try {
       await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
+      const signInResult = await GoogleSignin.signIn();
+
+      if (signInResult.data) {
+        // Create a Google credential with the token
+        const googleCredential = GoogleAuthProvider.credential(
+          signInResult.data.idToken,
+        );
+
+        // Sign-in the user with the credential
+        await signInWithCredential(getAuth(), googleCredential);
+      }
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -28,4 +44,13 @@ export function* emailRegisterSaga({
   payload: { data },
 }: PayloadAction<EmailAuthRegisterParameterInterface>) {
   console.log(data);
+}
+
+export function* signoutSaga() {
+  try {
+    yield call([getAuth, getAuth().signOut]);
+  } catch (error) {
+  } finally {
+    yield put(removeAuthData());
+  }
 }
