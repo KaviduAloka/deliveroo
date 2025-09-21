@@ -1,0 +1,1 @@
+export const GOOGLE_SIGNIN = 'AUTH/GOOGLE_SIGNIN';

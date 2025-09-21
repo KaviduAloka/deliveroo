@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SideMenu from '@chakrahq/react-native-side-menu';
-import { navigateToRestaurantInformation } from '../../../../navigation/navigationHelpers';
+import {
+  navigateToLoginScreen,
+  navigateToRestaurantInformation,
+} from '../../../../navigation/navigationHelpers';
 import { ThemeContext } from '../../../../components/ThemeContext';
 import { Text } from '../../../../components/typography';
 import Menu from '../../views/SideMenu';
@@ -33,6 +36,8 @@ const Home: React.FC = () => {
         <Button onPress={() => navigateToRestaurantInformation(1)}>
           Go to restaurant
         </Button>
+        <CommonSpace height={100} />
+        <Button onPress={() => navigateToLoginScreen(1)}>Sign in</Button>
       </SafeAreaView>
     </SideMenu>
   );
