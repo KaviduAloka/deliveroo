@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "202744121328",
+    "project_id": "deliveroo-472802",
+    "storage_bucket": "deliveroo-472802.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202744121328:android:3a335b9114acbe9e94ff35",
+        "android_client_info": {
+          "package_name": "com.deliveroo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202744121328-6hp4ma8rdvisglmasku41l2gkooqolu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7A0X2tZ-99LTiMAGtQsZf-mgqXhP6kNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202744121328-6hp4ma8rdvisglmasku41l2gkooqolu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

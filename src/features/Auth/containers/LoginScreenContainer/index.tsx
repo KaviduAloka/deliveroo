@@ -1,5 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Image, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+import {
+  Alert,
+  Image,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from '../../../../components/ThemeContext';
 import styles from './styles';
@@ -7,11 +19,18 @@ import { images } from '../../../../assets';
 import { goBack } from '../../../../navigation/NavigationService';
 import { Text } from '../../../../components/typography';
 import Button from '../../../../components/Button';
+import { googleSignin } from '../../store/actions';
 
 const LoginScreenContainer: React.FC = () => {
+  const dispatch = useDispatch();
+
   const { theme } = useContext(ThemeContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleGoogleSignIn = async () => {
+    dispatch(googleSignin());
+  };
 
   return (
     <SafeAreaView
@@ -27,7 +46,7 @@ const LoginScreenContainer: React.FC = () => {
         <Image
           source={images.deliveroo_logo_horizontal}
           style={styles.logo}
-          resizeMode="center"
+          resizeMode="contain"
         />
         <TextInput
           style={[styles.input, { color: theme.textColor }]}
@@ -53,13 +72,12 @@ const LoginScreenContainer: React.FC = () => {
           <Text style={styles.signUpText}>Sign up with email address</Text>
         </TouchableOpacity>
         <Text>{'\nOR\n'}</Text>
-
-        {/* <GoogleSigninButton
+        <GoogleSigninButton
           style={{ width: 192, height: 48 }}
           size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Dark}
           onPress={handleGoogleSignIn}
-        /> */}
+        />
       </ScrollView>
     </SafeAreaView>
   );
