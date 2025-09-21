@@ -8,10 +8,14 @@ export const navigateToRestaurantInformation = (restaurant_id: number) => {
   navigate(navigationConstants.RESTAURANT_INFORMATION, { restaurant_id });
 };
 
-export const navigateTpRestaurantFoodInformation = ({
+export const navigateToRestaurantFoodInformation = ({
   food,
 }: {
   food: RestaurantFoodInterface;
 }) => {
   navigate(navigationConstants.FOOD_INFORMATION, { food });
+};
+
+export const navigateToLoginScreen = () => {
+  navigate(navigationConstants.LOGIN_SCREEN);
 };

@@ -43,7 +43,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   cartIcon: (active: boolean) => ({
-    tintColor: active ? colors.PRIMARY_GREEN : colors.BACKGROUND_LIGHT,
+    tintColor: active ? colors.PRIMARY_GREEN : colors.BORDER_GRAY,
     width: 30,
     height: 30,
   }),
