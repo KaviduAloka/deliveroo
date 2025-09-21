@@ -12,6 +12,7 @@ import StackNavigation from './src/navigation/StackNavigation';
 import { LoadingModal } from './src/components/modals';
 import { useEffect } from 'react';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import AlertModal from './src/components/modals/AlertModal';
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
       <ThemeProvider>
         <StackNavigation />
         <LoadingModal />
+        <AlertModal />
       </ThemeProvider>
     </Provider>
   );

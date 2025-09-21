@@ -10,6 +10,7 @@ import RestaurantFoodInformationContainer from '../features/Restaurant/container
 import LoginScreenContainer from '../features/Auth/containers/LoginScreenContainer';
 import { StatusBar } from 'react-native';
 import { ThemeContext } from '../components/ThemeContext';
+import EmailRegisterContainer from '../features/Auth/containers/EmailRegisterContainer';
 
 const StackNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator();
@@ -20,7 +21,13 @@ const StackNavigation: React.FC = () => {
       <StatusBar
         barStyle={theme.mode === 'dark' ? 'light-content' : 'dark-content'}
       />
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          contentStyle: {
+            backgroundColor: theme.backgroundLightColor,
+          },
+        }}
+      >
         <Stack.Screen
           name={navigationConstants.SPLASH_SCREEN}
           component={SplashScreen}
@@ -51,6 +58,17 @@ const StackNavigation: React.FC = () => {
           name={navigationConstants.LOGIN_SCREEN}
           component={LoginScreenContainer}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={navigationConstants.EMAIL_REGISTER}
+          component={EmailRegisterContainer}
+          options={{
+            headerBackButtonDisplayMode: 'minimal',
+            title: 'Register with email',
+            headerTitleAlign: 'center',
+            headerTintColor: theme.textColor,
+            headerStyle: { backgroundColor: theme.backgroundLightColor },
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
