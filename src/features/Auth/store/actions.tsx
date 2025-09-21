@@ -12,4 +12,12 @@ export const emailRegister = (
   payload,
 });
 
+export const registerAuthUid = (payload: {
+  email: string;
+  auth_uid: string;
+}) => ({
+  type: types.REGISTER_AUTH_UID,
+  payload,
+});
+
 export const signout = () => ({ type: types.SIGN_OUT });

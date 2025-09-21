@@ -15,6 +15,9 @@ import {
 import { removeAuthData } from '../store/reducer';
 import { Alert } from 'react-native';
 import { hideLoading, showLoading } from '../../../store/appReducer/reducer';
+import { registerAuthUidApi } from '../../../services/Apis';
+import { store } from '../../../store/reducers';
+import { registerAuthUid } from '../store/actions';
 
 export function* googleSigninSaga() {
   yield call(async () => {
@@ -29,7 +32,11 @@ export function* googleSigninSaga() {
         );
 
         // Sign-in the user with the credential
-        await signInWithCredential(getAuth(), googleCredential);
+        const user = await signInWithCredential(getAuth(), googleCredential);
+
+        store.dispatch(
+          registerAuthUid({ auth_uid: user.user.uid, email: user.user.email! }),
+        );
       }
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -51,10 +58,14 @@ export function* emailRegisterSaga({
 
   yield call(async () => {
     try {
-      await createUserWithEmailAndPassword(
+      const user = await createUserWithEmailAndPassword(
         getAuth(),
         data.email,
         data.password,
+      );
+
+      store.dispatch(
+        registerAuthUid({ auth_uid: user.user.uid, email: user.user.email! }),
       );
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {
@@ -74,6 +85,16 @@ export function* emailRegisterSaga({
   });
 
   yield put(hideLoading());
+}
+
+export function* registerAuthUidSaga({
+  payload,
+}: PayloadAction<{ email: string; auth_uid: string }>) {
+  try {
+    const profile: unknown = yield call(registerAuthUidApi, payload);
+
+    console.log('PROFILE:  >> ', profile);
+  } catch (error) {}
 }
 
 export function* signoutSaga() {
