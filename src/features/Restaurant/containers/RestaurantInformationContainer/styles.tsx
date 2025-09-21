@@ -123,7 +123,7 @@ export default StyleSheet.create({
     marginLeft: 10,
   },
   footerView: {
-    height: 400,
+    height: 600,
   },
   addToCartButton: {
     backgroundColor: colors.PRIMARY_WHITE,

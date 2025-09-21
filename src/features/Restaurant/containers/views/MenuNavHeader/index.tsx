@@ -5,6 +5,7 @@ import styles from './styles';
 import { images } from '../../../../../assets';
 import commonStyles from '../../../../../themes/commonStyles';
 import CommonSpace from '../../../../../components/CommonSpace';
+import { navigateToLoginScreen } from '../../../../../navigation/navigationHelpers';
 
 const MenuNavHeader: React.FC = () => {
   return (
@@ -22,7 +23,10 @@ const MenuNavHeader: React.FC = () => {
         <TouchableOpacity style={styles.actionButton}>
           <Image source={images.home_24} style={styles.actionButtonIcon} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity
+          onPress={navigateToLoginScreen}
+          style={styles.actionButton}
+        >
           <Image source={images.user_24} style={styles.actionButtonIcon} />
         </TouchableOpacity>
       </View>

@@ -13,5 +13,5 @@ export const darkTheme = {
   backgroundColor: colors.PRIMARY_BLACK,
   backgroundLightColor: colors.BACKGROUND_DARK,
   textColor: colors.PRIMARY_WHITE,
-  textLightColor: colors.PRIMARY_GREEN,
+  textLightColor: colors.TEXT_CCCCCC,
 };

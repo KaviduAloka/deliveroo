@@ -8,6 +8,8 @@ import { Text } from '../../../../components/typography';
 import Menu from '../../views/SideMenu';
 import { images } from '../../../../assets';
 import styles from './styles';
+import Button from '../../../../components/Button';
+import CommonSpace from '../../../../components/CommonSpace';
 
 const Home: React.FC = () => {
   const { theme } = React.useContext(ThemeContext);
@@ -27,6 +29,10 @@ const Home: React.FC = () => {
         <TouchableOpacity onPress={() => setIsMenuOpen(pre => !pre)}>
           <Image source={images.menu} style={styles.sideMenuIcon} />
         </TouchableOpacity>
+        <CommonSpace height={100} />
+        <Button onPress={() => navigateToRestaurantInformation(1)}>
+          Go to restaurant
+        </Button>
       </SafeAreaView>
     </SideMenu>
   );

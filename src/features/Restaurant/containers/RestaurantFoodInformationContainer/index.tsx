@@ -19,7 +19,7 @@ const RestaurantFoodInformationContainer: React.FC<Props> = ({
   },
 }) => {
   const { theme } = useContext(ThemeContext);
-  const [value, setValue] = useState(1);
+  const [qty, setQty] = useState(1);
 
   return (
     <SafeAreaView
@@ -51,20 +51,20 @@ const RestaurantFoodInformationContainer: React.FC<Props> = ({
       <View style={styles.cartWrapper}>
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => setValue(pre => --pre)}
-          disabled={value === 1}
+          onPress={() => setQty(pre => --pre)}
+          disabled={qty === 1}
         >
-          <Image source={images.decrement} style={styles.cartIcon(value > 1)} />
+          <Image source={images.decrement} style={styles.cartIcon(qty > 1)} />
         </TouchableOpacity>
-        <Text style={styles.cartValue}>{value}</Text>
+        <Text style={styles.cartValue}>{qty}</Text>
         <TouchableOpacity
-          onPress={() => setValue(pre => ++pre)}
+          onPress={() => setQty(pre => ++pre)}
           activeOpacity={0.8}
         >
           <Image source={images.increment} style={styles.cartIcon(true)} />
         </TouchableOpacity>
       </View>
-      <Button>Add for ${food.price}</Button>
+      <Button>Add for ${(food.price * qty).toFixed(2)}</Button>
     </SafeAreaView>
   );
 };

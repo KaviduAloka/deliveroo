@@ -13,7 +13,6 @@ import {
   ViewToken,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { useDebouncedCallback } from 'use-debounce';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getRestaurantInformation } from '../../store/actions';
 import MenuNavHeader from '../views/MenuNavHeader';
@@ -28,7 +27,7 @@ import {
 } from '../../interfaces';
 import commonStyles from '../../../../themes/commonStyles';
 import Divider from '../../../../components/Divider';
-import { navigateTpRestaurantFoodInformation } from '../../../../navigation/navigationHelpers';
+import { navigateToRestaurantFoodInformation } from '../../../../navigation/navigationHelpers';
 
 interface Props {
   route: { params: { restaurant_id: number } };
@@ -57,10 +56,6 @@ const RestaurantInformationContainer: React.FC<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const updateActiveCategoryIndex = useDebouncedCallback((index: number) => {
-    setActiveCategoryIndex(index);
-  }, 100);
-
   const viewabilityConfig = useRef({
     itemVisiblePercentThreshold: 50, // consider item "visible" if 50% is in view
   }).current;
@@ -82,7 +77,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
             viewOffset: 5,
           });
 
-          updateActiveCategoryIndex(index);
+          setActiveCategoryIndex(index);
         }
       }
     },
@@ -208,7 +203,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
           styles.foodListItemWrapper,
           { opacity: item.available ? 1 : 0.5 },
         ]}
-        onPress={() => navigateTpRestaurantFoodInformation({ food: item })}
+        onPress={() => navigateToRestaurantFoodInformation({ food: item })}
       >
         <View style={commonStyles.fullFlex}>
           <Text style={styles.foodName}>{item.name}</Text>
@@ -229,6 +224,9 @@ const RestaurantInformationContainer: React.FC<Props> = ({
               activeOpacity={0.8}
               style={styles.addToCartButton}
               disabled={!item.available}
+              onPress={() =>
+                navigateToRestaurantFoodInformation({ food: item })
+              }
             >
               <Image source={images.plus} style={styles.addToCartIcon} />
             </TouchableOpacity>
@@ -259,7 +257,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
           styles.verticalCard,
           { backgroundColor: theme.backgroundColor },
         ]}
-        onPress={() => navigateTpRestaurantFoodInformation({ food: item })}
+        onPress={() => navigateToRestaurantFoodInformation({ food: item })}
       >
         <View>
           <Image
@@ -268,7 +266,10 @@ const RestaurantInformationContainer: React.FC<Props> = ({
             }}
             style={styles.verticalCardImage}
           />
-          <TouchableOpacity style={styles.addToCartButtonVerticalCard}>
+          <TouchableOpacity
+            style={styles.addToCartButtonVerticalCard}
+            onPress={() => navigateToRestaurantFoodInformation({ food: item })}
+          >
             <Image
               source={images.plus}
               style={styles.addToCartIconVerticalCard}
