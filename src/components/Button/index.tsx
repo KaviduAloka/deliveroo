@@ -11,7 +11,11 @@ interface Props {
 
 const Button: React.FC<Props> = ({ children, onPress, style = {} }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
+    <TouchableOpacity
+      accessibilityRole="button"
+      onPress={() => onPress?.()}
+      style={[styles.button, style]}
+    >
       <Text style={styles.text}>{children}</Text>
     </TouchableOpacity>
   );
