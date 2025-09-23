@@ -4,7 +4,7 @@ import { screenWidth } from '../../../../themes/dimensions';
 
 export default StyleSheet.create({
   headerImageWrapper: {
-    marginVertical: 10,
+    marginBottom: 10,
   },
   headerImage: {
     width: screenWidth,

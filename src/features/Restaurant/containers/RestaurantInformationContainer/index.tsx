@@ -99,8 +99,8 @@ const RestaurantInformationContainer: React.FC<Props> = ({
     <View style={{ backgroundColor: theme.backgroundColor }}>
       <View style={styles.headerImageWrapper}>
         <Image
-          source={images.restaurant_header}
-          resizeMode="cover"
+          source={{ uri: restaurantInformation?.restaurant.restaurant_image }}
+          resizeMethod="scale"
           style={styles.headerImage}
         />
         <TouchableOpacity style={styles.backButton} onPress={goBack}>
@@ -110,7 +110,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
       <View style={styles.restaurantInfoWrapper}>
         <Text style={styles.restaurantName}>Nando's - Soho</Text>
         <Text style={styles.restaurantSubText}>
-          20 - 30 · Portuguese · Sandwiches · Burgers
+          {restaurantInformation?.restaurant.restaurant_description}
         </Text>
         <Text style={styles.restaurantSubText}>
           0.60 miles away · Closes at 21:00 · $8.00 minimum · $2 delivery
@@ -129,14 +129,22 @@ const RestaurantInformationContainer: React.FC<Props> = ({
       <TouchableOpacity style={styles.headerRowItemWrapper} onPress={() => {}}>
         <Image source={images.star} style={styles.infoIcon} />
         <View style={styles.rowItemContentWrapper}>
-          <Text style={styles.rowItemTitle}>4.7 Excellent</Text>
-          <Text style={styles.rowItemSubTitle}>Sell all 500 reviews</Text>
+          <Text style={styles.rowItemTitle}>
+            {restaurantInformation?.restaurant.restaurant_rating} Excellent
+          </Text>
+          <Text style={styles.rowItemSubTitle}>
+            Sell all {restaurantInformation?.restaurant.restaurant_rating_count}
+            reviews
+          </Text>
         </View>
         <Image source={images.right_arrow} style={styles.rightArrowIcon} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.headerRowItemWrapper}>
         <Image source={images.delivery} style={styles.deliveryIcon} />
-        <Text style={styles.deliveryText}>Deliver in 15 - 30 min</Text>
+        <Text style={styles.deliveryText}>
+          Deliver in{' '}
+          {restaurantInformation?.restaurant.restaurant_delivery_time}
+        </Text>
         <Text style={styles.deliveryChangeText}>Change</Text>
       </TouchableOpacity>
     </View>

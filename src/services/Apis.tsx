@@ -10,8 +10,6 @@ export const registerAuthUidApi = (body: {
   });
 };
 
-export const signinAuthUidApi = (body: { email: string; auth_uid: string }) => {
-  return ApiService(ApiEndpoints.signinAuthUid, 'POST', body, {
-    api_key: 'DELIVEROO_@2025',
-  });
+export const getRestaurantDetailsApi = () => {
+  return ApiService(ApiEndpoints.getRestaurantDetails, 'GET');
 };

@@ -7,4 +7,5 @@ const BASE_URL = `http://${Platform.select({
 
 export const ApiEndpoints = {
   registerAuthUid: `${BASE_URL}/register_auth_uid`,
+  getRestaurantDetails: `${BASE_URL}/get_restaurant_details`,
 };
