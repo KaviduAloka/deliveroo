@@ -22,16 +22,15 @@ function ApiService(
       //   headers.Authorization = `Bearer ${accessToken}`;
       // }
 
-      // __DEV__ &&
-      //   DEV_LOGS &&
-      //   console.log(
-      //     '\x1b[35m',
-      //     'REQUEST: ',
-      //     url,
-      //     '\n',
-      //     JSON.stringify({ method, body, headers }, null, '   '),
-      //     '\x1b[0m',
-      //   );
+      __DEV__ &&
+        console.log(
+          '\x1b[35m',
+          'REQUEST: ',
+          url,
+          '\n',
+          JSON.stringify({ method, body, headers }, null, '   '),
+          '\x1b[0m',
+        );
 
       axios(url, {
         method,

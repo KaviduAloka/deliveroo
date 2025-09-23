@@ -12,6 +12,7 @@ import {
   View,
   ViewToken,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getRestaurantInformation } from '../../store/actions';
@@ -98,7 +99,7 @@ const RestaurantInformationContainer: React.FC<Props> = ({
   const renderListHeader = () => (
     <View style={{ backgroundColor: theme.backgroundColor }}>
       <View style={styles.headerImageWrapper}>
-        <Image
+        <FastImage
           source={{ uri: restaurantInformation?.restaurant.restaurant_image }}
           resizeMethod="scale"
           style={styles.headerImage}
@@ -220,13 +221,13 @@ const RestaurantInformationContainer: React.FC<Props> = ({
         </View>
         {item.image ? (
           <View>
-            <Image
+            <FastImage
               source={{
-                uri: 'https://media.istockphoto.com/id/1472680285/photo/healthy-meal-with-grilled-chicken-rice-salad-and-vegetables-served-by-woman.jpg?s=612x612&w=0&k=20&c=E4Y94oLIj8lXYk0OovBhsah3s_sC--WF95xPDvbJPlU=',
+                uri: item.image,
               }}
               style={styles.foodImage}
               resizeMode="cover"
-              resizeMethod="scale"
+              resizeMethod="resize"
             />
             <TouchableOpacity
               activeOpacity={0.8}
@@ -268,9 +269,9 @@ const RestaurantInformationContainer: React.FC<Props> = ({
         onPress={() => navigateToRestaurantFoodInformation({ food: item })}
       >
         <View>
-          <Image
+          <FastImage
             source={{
-              uri: 'https://media.istockphoto.com/id/1472680285/photo/healthy-meal-with-grilled-chicken-rice-salad-and-vegetables-served-by-woman.jpg?s=612x612&w=0&k=20&c=E4Y94oLIj8lXYk0OovBhsah3s_sC--WF95xPDvbJPlU=',
+              uri: item.image,
             }}
             style={styles.verticalCardImage}
           />
