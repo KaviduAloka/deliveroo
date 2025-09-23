@@ -9,8 +9,15 @@ interface Props {
 
 const Switch: React.FC<Props> = ({ value, onChange }) => {
   return (
-    <TouchableOpacity activeOpacity={0.8} onPress={() => onChange(!value)}>
-      <Image source={value ? images.switch_on : images.switch_off} />
+    <TouchableOpacity
+      accessibilityRole="button"
+      activeOpacity={0.8}
+      onPress={() => onChange(!value)}
+    >
+      <Image
+        testID="switch-icon"
+        source={value ? images.switch_on : images.switch_off}
+      />
     </TouchableOpacity>
   );
 };

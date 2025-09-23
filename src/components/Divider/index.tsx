@@ -12,6 +12,7 @@ const Divider: React.FC<Props> = ({ style = {} }) => {
 
   return (
     <View
+      testID="divider"
       style={[
         styles.wrapper,
         { borderBottomColor: theme.backgroundLightColor },

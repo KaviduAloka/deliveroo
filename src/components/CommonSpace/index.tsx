@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CommonSpace: React.FC<Props> = ({ width, height }) => {
-  return <View style={{ width, height }} />;
+  return <View testID="common-space" style={{ width, height }} />;
 };
 
 export default CommonSpace;

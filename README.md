@@ -1,97 +1,75 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🚀 Deliveroo – React Native Application
 
-# Getting Started
+Deliveroo is a cross-platform mobile application built with **React Native (0.81.4)** and **React (19.1.0)**.  
+It allows users to browse restaurants, place food orders, and track deliveries in real time.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
+## 📂 Project Structure
 
-## Step 1: Start Metro
+deliveroo/<br>
+├─ __tests__/ # Component unit testing<br> 
+├─ src/<br>
+│ ├─ assets/ # Images<br>
+│ ├─ components/ # Reusable UI components<br>
+│ ├─ constants/ # Application constants<br>
+│ ├─ features/ # Screen components<br>
+│ ├─ navigation/ # Navigation stacks and tabs<br>
+│ ├─ services/ # API / Firebase integrations<br>
+│ ├─ store/ # Redux Toolkit slices & sagas<br>
+│ └─ themes/ # Common stylings<br>
+├─ App.tsx / App.js<br>
+└─ package.json<br>
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+---
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## 🛠️ Tech Stack
 
-```sh
-# Using npm
-npm start
+| Category              | Library / Version                          |
+|-----------------------|---------------------------------------------|
+| **Core**              | React Native **0.81.4**, React **19.1.0**   |
+| **Navigation**        | @react-navigation/native **7.1.17**, @react-navigation/native-stack **7.3.26**, react-native-screens **4.16.0**, react-native-safe-area-context **5.6.1** |
+| **State Management**  | @reduxjs/toolkit **2.9.0**, react-redux **9.2.0**, redux-saga **1.3.0** |
+| **Networking**        | axios **1.12.2** |
+| **Firebase**          | @react-native-firebase/app & auth **23.3.1** |
+| **Auth / Social**     | @react-native-google-signin/google-signin **16.0.0** |
+| **Testing**           | jest **29.6.3**, @testing-library/react-native **13.3.3**, react-test-renderer **19.1.0** |
+| **TypeScript**        | typescript **5.8.3** |
+| **Lint & Format**     | eslint **8.19.0**, prettier **2.8.8** |
 
-# OR using Yarn
-yarn start
+Node engine: **>=20**
+
+---
+
+## ⚙️ Installation & Setup
+
+### Prerequisites
+- **Node.js ≥20**
+- npm or yarn
+- Android Studio & Xcode (for Android/iOS builds)
+
+### Steps
+```bash
+git clone https://github.com/KaviduAloka/deliveroo.git
+cd deliveroo
+npm install        # or yarn
+npm start          # starts Metro bundler
+
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+### Run on devices/emulators
+```
+npm run android    # Android
+npm run ios        # iOS
 ```
 
-### iOS
+### 📜 Scripts
+From package.json:
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+|Script               | Description|
+|---------------------|------------|
+|`npm run android`    |Build & run app on Android emulator/device|
+|`npm run ios` | Build & run app on iOS simulator|
+|`npm run test`|Run tests with Jest|
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+### Improvements that could make
+* Move sensitive information to `.env` file
