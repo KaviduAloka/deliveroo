@@ -1,25 +1,16 @@
 import React, { useContext, useState } from 'react';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
-import {
-  Alert,
-  Image,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { Alert, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from '../../../../components/ThemeContext';
 import styles from './styles';
 import { images } from '../../../../assets';
 import { goBack } from '../../../../navigation/NavigationService';
-import { Text } from '../../../../components/typography';
+import { Text, TextInput } from '../../../../components/typography';
 import Button from '../../../../components/Button';
-import { googleSignin } from '../../store/actions';
+import { emailSignin, googleSignin } from '../../store/actions';
+import { navigateToRegisterWithEmail } from '../../../../navigation/navigationHelpers';
 
 const LoginScreenContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,6 +21,23 @@ const LoginScreenContainer: React.FC = () => {
 
   const handleGoogleSignIn = async () => {
     dispatch(googleSignin());
+  };
+
+  const validate = () => {
+    let errorMessage = null;
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      errorMessage = 'Invalid e-mail address';
+    } else if (password.length < 6) {
+      errorMessage = 'Password must be at least 6 characters';
+    }
+
+    if (errorMessage !== null) {
+      Alert.alert('Invalid input', errorMessage, [
+        { text: 'Ok', style: 'destructive' },
+      ]);
+    } else {
+      dispatch(emailSignin({ data: { email, password } }));
+    }
   };
 
   return (
@@ -49,31 +57,28 @@ const LoginScreenContainer: React.FC = () => {
           resizeMode="contain"
         />
         <TextInput
-          style={[styles.input, { color: theme.textColor }]}
-          placeholder="Email address"
+          label="Email address"
+          placeholder="Johndoe@email.com"
           keyboardType="email-address"
-          autoCapitalize="none"
           value={email}
           onChangeText={setEmail}
-          placeholderTextColor={theme.textLightColor}
         />
         <TextInput
-          style={[styles.input, { color: theme.textColor }]}
-          placeholder="Password"
-          secureTextEntry
+          label="Password"
+          placeholder="*********"
+          secureTextEntry={true}
           value={password}
           onChangeText={setPassword}
-          placeholderTextColor={theme.textLightColor}
         />
-        <Button onPress={() => {}} style={styles.button}>
+        <Button onPress={validate} style={styles.button}>
           Sign in
         </Button>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={navigateToRegisterWithEmail}>
           <Text style={styles.signUpText}>Sign up with email address</Text>
         </TouchableOpacity>
         <Text>{'\nOR\n'}</Text>
         <GoogleSigninButton
-          style={{ width: 192, height: 48 }}
+          style={styles.googleSigninButton}
           size={GoogleSigninButton.Size.Wide}
           color={GoogleSigninButton.Color.Dark}
           onPress={handleGoogleSignIn}

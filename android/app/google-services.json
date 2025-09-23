@@ -14,7 +14,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "202744121328-6hp4ma8rdvisglmasku41l2gkooqolu0.apps.googleusercontent.com",
+          "client_id": "202744121328-pej5fqso5n26dn1jbdbf5l91o4a2clc4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deliveroo",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "202744121328-rv96bthqhi117fusdovb68qjdssdfisi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deliveroo",
+            "certificate_hash": "7c9b34e537d948d911c731b61049c51da813abfc"
+          }
+        },
+        {
+          "client_id": "202744121328-9dd0e8qbutq2aor2blu0dfc0paphh6tm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +45,13 @@
             {
               "client_id": "202744121328-6hp4ma8rdvisglmasku41l2gkooqolu0.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "202744121328-jbprki2lf1k9hjeoiauo8kemog88btba.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.deliveroo"
+              }
             }
           ]
         }

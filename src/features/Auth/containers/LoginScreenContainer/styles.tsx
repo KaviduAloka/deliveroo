@@ -20,14 +20,6 @@ export default StyleSheet.create({
     height: 150,
     marginVertical: 30,
   },
-  input: {
-    alignSelf: 'stretch',
-    borderWidth: 1,
-    borderColor: colors.BORDER_GRAY,
-    borderRadius: 8,
-    padding: 20,
-    marginBottom: 20,
-  },
   button: {
     alignSelf: 'stretch',
     padding: 15,
@@ -38,4 +30,5 @@ export default StyleSheet.create({
     fontSize: 18,
     color: colors.PRIMARY_GREEN,
   },
+  googleSigninButton: { width: 192 },
 });

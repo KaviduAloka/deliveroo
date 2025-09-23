@@ -1,5 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { RestaurantInformationResponseInterface } from '../interfaces';
+import { hideLoading, showLoading } from '../../../store/appReducer/reducer';
+import { delay, put } from 'redux-saga/effects';
 
 export function* getRestaurantInformationSaga({
   payload,
@@ -324,5 +326,11 @@ export function* getRestaurantInformationSaga({
     },
   };
 
+  yield put(showLoading());
+
+  yield delay(500);
+
   payload.callback(response);
+
+  yield put(hideLoading());
 }

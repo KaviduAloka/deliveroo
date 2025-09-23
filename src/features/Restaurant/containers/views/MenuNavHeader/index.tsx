@@ -1,13 +1,27 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { View, Image, TouchableOpacity } from 'react-native';
-
 import styles from './styles';
 import { images } from '../../../../../assets';
 import commonStyles from '../../../../../themes/commonStyles';
 import CommonSpace from '../../../../../components/CommonSpace';
-import { navigateToLoginScreen } from '../../../../../navigation/navigationHelpers';
+import {
+  navigateToLoginScreen,
+  navigateToProfile,
+} from '../../../../../navigation/navigationHelpers';
+import { authDataSelector } from '../../../../Auth/store/selectors';
 
 const MenuNavHeader: React.FC = () => {
+  const authData = useSelector(authDataSelector);
+
+  const onUserIconPress = () => {
+    if (authData) {
+      navigateToProfile();
+    } else {
+      navigateToLoginScreen();
+    }
+  };
+
   return (
     <View style={styles.wrapper}>
       <Image
@@ -23,10 +37,7 @@ const MenuNavHeader: React.FC = () => {
         <TouchableOpacity style={styles.actionButton}>
           <Image source={images.home_24} style={styles.actionButtonIcon} />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={navigateToLoginScreen}
-          style={styles.actionButton}
-        >
+        <TouchableOpacity onPress={onUserIconPress} style={styles.actionButton}>
           <Image source={images.user_24} style={styles.actionButtonIcon} />
         </TouchableOpacity>
       </View>

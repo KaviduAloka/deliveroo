@@ -1,3 +1,4 @@
 import navigationConstants from './navigationConstants';
+import storageConstants from './storageConstants';
 
-export { navigationConstants };
+export { navigationConstants, storageConstants };

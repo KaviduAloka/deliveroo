@@ -19,3 +19,11 @@ export const navigateToRestaurantFoodInformation = ({
 export const navigateToLoginScreen = () => {
   navigate(navigationConstants.LOGIN_SCREEN);
 };
+
+export const navigateToRegisterWithEmail = () => {
+  navigate(navigationConstants.EMAIL_REGISTER);
+};
+
+export const navigateToProfile = () => {
+  navigate(navigationConstants.USER_PROFILE);
+};
