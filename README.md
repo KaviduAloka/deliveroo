@@ -30,6 +30,7 @@ deliveroo/<br>
 | **Navigation**        | @react-navigation/native **7.1.17**, @react-navigation/native-stack **7.3.26**, react-native-screens **4.16.0**, react-native-safe-area-context **5.6.1** |
 | **State Management**  | @reduxjs/toolkit **2.9.0**, react-redux **9.2.0**, redux-saga **1.3.0** |
 | **Networking**        | axios **1.12.2** |
+| **Image caching**     | react-native-fast-image **8.6.3** |
 | **Firebase**          | @react-native-firebase/app & auth **23.3.1** |
 | **Auth / Social**     | @react-native-google-signin/google-signin **16.0.0** |
 | **Testing**           | jest **29.6.3**, @testing-library/react-native **13.3.3**, react-test-renderer **19.1.0** |
