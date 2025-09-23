@@ -22,6 +22,11 @@ import { hideLoading, showLoading } from '../../../store/appReducer/reducer';
 import { registerAuthUidApi, signinAuthUidApi } from '../../../services/Apis';
 import { store } from '../../../store/reducers';
 import { registerAuthUid, signinAuthUid } from '../store/actions';
+import {
+  removeFromStorage,
+  saveToStorage,
+} from '../../../services/StorageService';
+import { storageConstants } from '../../../constants';
 
 export function* googleSigninSaga() {
   yield call(async () => {
@@ -134,9 +139,15 @@ export function* registerAuthUidSaga({
       registerAuthUidApi,
       payload,
     );
+    yield call(
+      saveToStorage,
+      storageConstants.PROFILE_DATA,
+      response.data.profile,
+    );
 
     yield put(setProfile(response.data.profile));
   } catch (error) {
+    console.log('ERROR: registerAuthUidSaga', error);
   } finally {
     yield put(hideLoading());
   }
@@ -152,9 +163,15 @@ export function* signinAuthUidSaga({
     yield put(showLoading());
 
     const response: AuthApiResponseInterface = yield call(
-      signinAuthUidApi,
+      registerAuthUidApi,
       payload,
     );
+    yield call(
+      saveToStorage,
+      storageConstants.PROFILE_DATA,
+      response.data.profile,
+    );
+
     yield put(setProfile(response.data.profile));
   } catch (error) {
     console.log('ERROR: signinAuthSaga', error);
@@ -167,6 +184,7 @@ export function* signoutSaga() {
   yield call(async () => {
     try {
       await signOut(getAuth());
+      await removeFromStorage(storageConstants.PROFILE_DATA);
     } catch (error) {
       __DEV__ && console.log('SIGNOUT ERROR: ', error);
     }

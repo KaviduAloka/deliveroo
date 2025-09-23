@@ -11,11 +11,13 @@ interface AlertState {
 }
 
 export interface AppStateInterface {
+  appInitialized: boolean;
   loading: LoadingStateInterface;
   alert: AlertState;
 }
 
 const initialState: AppStateInterface = {
+  appInitialized: false,
   loading: { queLength: 0 },
   alert: {
     visible: false,
@@ -28,6 +30,9 @@ const appSlice = createSlice({
   name: 'appReducer',
   initialState,
   reducers: {
+    appInitialized: state => {
+      state.appInitialized = true;
+    },
     showLoading: state => {
       state.loading.queLength += 1;
     },
@@ -51,5 +56,10 @@ const appSlice = createSlice({
 });
 
 export default appSlice.reducer;
-export const { showLoading, hideLoading, showAlert, hideAlert } =
-  appSlice.actions;
+export const {
+  appInitialized,
+  showLoading,
+  hideLoading,
+  showAlert,
+  hideAlert,
+} = appSlice.actions;

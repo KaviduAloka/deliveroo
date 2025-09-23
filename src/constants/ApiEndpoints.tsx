@@ -7,5 +7,4 @@ const BASE_URL = `http://${Platform.select({
 
 export const ApiEndpoints = {
   registerAuthUid: `${BASE_URL}/register_auth_uid`,
-  signinAuthUid: `${BASE_URL}/auth_signin`,
 };
