@@ -19,6 +19,4 @@ export default {
   decrement: require('./images/decrement.png'),
   switch_on: require('./images/switch_on.png'),
   switch_off: require('./images/switch_off.png'),
-
-  restaurant_header: require('./images/restaurant_header.jpg'),
 };
