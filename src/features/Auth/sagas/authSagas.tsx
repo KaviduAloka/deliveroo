@@ -4,20 +4,24 @@ import {
 } from '@react-native-google-signin/google-signin';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { call, put } from 'redux-saga/effects';
-import { EmailAuthRegisterParameterInterface } from '../interfaces';
+import {
+  AuthApiResponseInterface,
+  EmailAuthParameterInterface,
+} from '../interfaces';
 import {
   createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   signInWithCredential,
   signOut,
+  signInWithEmailAndPassword,
 } from '@react-native-firebase/auth';
-import { removeAuthData } from '../store/reducer';
+import { removeAuthData, removeProfile, setProfile } from '../store/reducer';
 import { Alert } from 'react-native';
 import { hideLoading, showLoading } from '../../../store/appReducer/reducer';
-import { registerAuthUidApi } from '../../../services/Apis';
+import { registerAuthUidApi, signinAuthUidApi } from '../../../services/Apis';
 import { store } from '../../../store/reducers';
-import { registerAuthUid } from '../store/actions';
+import { registerAuthUid, signinAuthUid } from '../store/actions';
 
 export function* googleSigninSaga() {
   yield call(async () => {
@@ -32,10 +36,16 @@ export function* googleSigninSaga() {
         );
 
         // Sign-in the user with the credential
-        const user = await signInWithCredential(getAuth(), googleCredential);
+        const authUser = await signInWithCredential(
+          getAuth(),
+          googleCredential,
+        );
 
         store.dispatch(
-          registerAuthUid({ auth_uid: user.user.uid, email: user.user.email! }),
+          registerAuthUid({
+            auth_uid: authUser.user.uid,
+            email: authUser.user.email!,
+          }),
         );
       }
     } catch (error: any) {
@@ -51,9 +61,36 @@ export function* googleSigninSaga() {
   });
 }
 
+export function* emailSigninSaga({
+  payload: { data },
+}: PayloadAction<EmailAuthParameterInterface>) {
+  yield call(async () => {
+    try {
+      const authUser = await signInWithEmailAndPassword(
+        getAuth(),
+        data.email,
+        data.password,
+      );
+
+      store.dispatch(
+        signinAuthUid({
+          auth_uid: authUser.user.uid,
+          email: authUser.user.email!,
+        }),
+      );
+    } catch (error: any) {
+      if (error.code === 'auth/invalid-credential') {
+        Alert.alert('Invalid credentials', 'Invalid credentials entered', [
+          { text: 'Ok' },
+        ]);
+      }
+    }
+  });
+}
+
 export function* emailRegisterSaga({
   payload: { data },
-}: PayloadAction<EmailAuthRegisterParameterInterface>) {
+}: PayloadAction<EmailAuthParameterInterface>) {
   yield put(showLoading());
 
   yield call(async () => {
@@ -91,10 +128,39 @@ export function* registerAuthUidSaga({
   payload,
 }: PayloadAction<{ email: string; auth_uid: string }>) {
   try {
-    const profile: unknown = yield call(registerAuthUidApi, payload);
+    yield put(showLoading());
 
-    console.log('PROFILE:  >> ', profile);
-  } catch (error) {}
+    const response: AuthApiResponseInterface = yield call(
+      registerAuthUidApi,
+      payload,
+    );
+
+    yield put(setProfile(response.data.profile));
+  } catch (error) {
+  } finally {
+    yield put(hideLoading());
+  }
+}
+
+export function* signinAuthUidSaga({
+  payload,
+}: PayloadAction<{
+  email: string;
+  auth_uid: string;
+}>) {
+  try {
+    yield put(showLoading());
+
+    const response: AuthApiResponseInterface = yield call(
+      signinAuthUidApi,
+      payload,
+    );
+    yield put(setProfile(response.data.profile));
+  } catch (error) {
+    console.log('ERROR: signinAuthSaga', error);
+  } finally {
+    yield put(hideLoading());
+  }
 }
 
 export function* signoutSaga() {
@@ -107,4 +173,5 @@ export function* signoutSaga() {
   });
 
   yield put(removeAuthData());
+  yield put(removeProfile());
 }

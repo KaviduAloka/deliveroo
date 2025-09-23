@@ -15,7 +15,10 @@ import styles from './styles';
 import Button from '../../../../components/Button';
 import CommonSpace from '../../../../components/CommonSpace';
 import { setAuthData } from '../../../Auth/store/reducer';
-import { authDataSelector } from '../../../Auth/store/selectors';
+import {
+  authDataSelector,
+  profileSelector,
+} from '../../../Auth/store/selectors';
 import { Text } from '../../../../components/typography';
 
 const Home: React.FC = () => {
@@ -24,6 +27,7 @@ const Home: React.FC = () => {
   const { theme } = React.useContext(ThemeContext);
 
   const authData = useSelector(authDataSelector);
+  const profile = useSelector(profileSelector);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authInitializing, setAuthInitializing] = useState(false);
@@ -43,6 +47,10 @@ const Home: React.FC = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    console.log('PROFILE:', profile);
+  }, [profile]);
 
   const menu = <Menu />;
 

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
-import { Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Alert, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ThemeContext } from '../../../../components/ThemeContext';
@@ -9,7 +9,7 @@ import { images } from '../../../../assets';
 import { goBack } from '../../../../navigation/NavigationService';
 import { Text, TextInput } from '../../../../components/typography';
 import Button from '../../../../components/Button';
-import { googleSignin } from '../../store/actions';
+import { emailSignin, googleSignin } from '../../store/actions';
 import { navigateToRegisterWithEmail } from '../../../../navigation/navigationHelpers';
 
 const LoginScreenContainer: React.FC = () => {
@@ -21,6 +21,23 @@ const LoginScreenContainer: React.FC = () => {
 
   const handleGoogleSignIn = async () => {
     dispatch(googleSignin());
+  };
+
+  const validate = () => {
+    let errorMessage = null;
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      errorMessage = 'Invalid e-mail address';
+    } else if (password.length < 6) {
+      errorMessage = 'Password must be at least 6 characters';
+    }
+
+    if (errorMessage !== null) {
+      Alert.alert('Invalid input', errorMessage, [
+        { text: 'Ok', style: 'destructive' },
+      ]);
+    } else {
+      dispatch(emailSignin({ data: { email, password } }));
+    }
   };
 
   return (
@@ -49,10 +66,11 @@ const LoginScreenContainer: React.FC = () => {
         <TextInput
           label="Password"
           placeholder="*********"
+          secureTextEntry={true}
           value={password}
           onChangeText={setPassword}
         />
-        <Button onPress={() => {}} style={styles.button}>
+        <Button onPress={validate} style={styles.button}>
           Sign in
         </Button>
         <TouchableOpacity onPress={navigateToRegisterWithEmail}>

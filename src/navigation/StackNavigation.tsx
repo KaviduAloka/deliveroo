@@ -66,7 +66,7 @@ const StackNavigation: React.FC = () => {
               component={ProfileContainer}
               options={{
                 title: 'Profile',
-                headerBackButtonDisplayMode: 'minimal',
+                headerTintColor: theme.textColor,
               }}
             />
           </Stack.Group>
@@ -82,7 +82,6 @@ const StackNavigation: React.FC = () => {
               name={navigationConstants.EMAIL_REGISTER}
               component={EmailRegisterContainer}
               options={{
-                headerBackButtonDisplayMode: 'minimal',
                 title: 'Register with email',
                 headerTitleAlign: 'center',
                 headerTintColor: theme.textColor,

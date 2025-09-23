@@ -1,12 +1,15 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ProfileInterface } from '../interfaces';
 
 export interface AuthStateInterface {
   authData: null | FirebaseAuthTypes.User;
+  profile: null | ProfileInterface;
 }
 
 const initialState: AuthStateInterface = {
   authData: null,
+  profile: null,
 };
 
 const appSlice = createSlice({
@@ -19,8 +22,15 @@ const appSlice = createSlice({
     removeAuthData: state => {
       state.authData = null;
     },
+    setProfile: (state, action: PayloadAction<ProfileInterface>) => {
+      state.profile = action.payload;
+    },
+    removeProfile: state => {
+      state.profile = null;
+    },
   },
 });
 
 export default appSlice.reducer;
-export const { setAuthData, removeAuthData } = appSlice.actions;
+export const { setAuthData, removeAuthData, setProfile, removeProfile } =
+  appSlice.actions;
