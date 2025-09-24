@@ -67,6 +67,7 @@ const StackNavigation: React.FC = () => {
               options={{
                 title: 'Profile',
                 headerTintColor: theme.textColor,
+                headerStyle: { backgroundColor: theme.backgroundLightColor },
               }}
             />
           </Stack.Group>
